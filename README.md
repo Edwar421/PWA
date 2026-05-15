@@ -160,125 +160,7 @@ La verificación no depende solo de `navigator.onLine`, sino de una prueba real 
 
 ---
 
-## 8. Archivos listos para revisar
-
-### `index.html`
-```html
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#2563eb" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="icons/icon-192.png" />
-  <link rel="stylesheet" href="styles.css" />
-  <title>Mi PWA Taller</title>
-</head>
-<body>
-  <main class="shell">
-    <section class="hero card">
-      <div>
-        <span class="tag">Taller práctico PWA</span>
-        <h1>Mi PWA Taller</h1>
-        <p class="lead">
-          Una aplicación pequeña para entender <strong>manifest</strong>, <strong>Service Worker</strong>,
-          <strong>caché</strong>, <strong>instalación</strong> y <strong>modo offline</strong>.
-        </p>
-      </div>
-
-      <div class="status-panel">
-        <p class="status-label">Conexión</p>
-        <p id="estado" class="status state-waiting">Comprobando conexión...</p>
-        <p id="estado-detalle" class="status-detail">La app verificará si hay internet real y no solo el estado del navegador.</p>
-      </div>
-    </section>
-
-    <section class="card form-card">
-      <div class="card-title">
-        <h2>Agregar una tarea</h2>
-        <p>Completa los campos y presiona “Agregar tarea”.</p>
-      </div>
-
-      <div class="grid">
-        <div class="field">
-          <label for="tarea">Tarea</label>
-          <input type="text" id="tarea" placeholder="Ej. Revisar el Service Worker" maxlength="80" />
-        </div>
-
-        <div class="field">
-          <label for="prioridad">Prioridad</label>
-          <select id="prioridad">
-            <option value="Alta">Alta</option>
-            <option value="Media" selected>Media</option>
-            <option value="Baja">Baja</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button id="agregar" class="primary">Agregar tarea</button>
-        <button id="limpiar" class="secondary" type="button">Limpiar lista</button>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="list-header">
-        <div>
-          <h2>Lista de tareas</h2>
-          <p>Tus datos se guardan en el navegador con <code>localStorage</code>.</p>
-        </div>
-        <span id="contador" class="counter">0 tareas</span>
-      </div>
-
-      <ul id="lista" class="task-list"></ul>
-      <p class="hint">
-        Prueba esto: agrega una tarea, abre DevTools, activa <strong>Offline</strong> y recarga. La app debe seguir visible y mostrar el estado correcto.
-      </p>
-    </section>
-  </main>
-
-  <script src="app.js"></script>
-</body>
-</html>
-```
-
-### `app.js`
-```javascript
-const inputTarea = document.getElementById('tarea');
-const selectPrioridad = document.getElementById('prioridad');
-const botonAgregar = document.getElementById('agregar');
-const botonLimpiar = document.getElementById('limpiar');
-const listaTareas = document.getElementById('lista');
-const estado = document.getElementById('estado');
-const estadoDetalle = document.getElementById('estado-detalle');
-const contador = document.getElementById('contador');
-
-const STORAGE_KEY = 'pwa-taller-tareas-v2';
-const PING_URL = './ping.txt';
-
-// ... resto del código ...
-```
-
-### `sw.js`
-```javascript
-const CACHE_NAME = 'pwa-taller-v2';
-const URLS_TO_CACHE = [
-  './',
-  './index.html',
-  './styles.css',
-  './app.js',
-  './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png'
-];
-```
-
----
-
-## 9. Cómo probar que funciona offline
+## 8.  Cómo probar que funciona offline
 
 1. Abrir la app.
 2. Agregar 2 o 3 tareas.
@@ -295,7 +177,7 @@ const URLS_TO_CACHE = [
 
 ---
 
-## 10. Qué deben capturar en pantallazos
+## 9. Qué deben capturar en pantallazos
 
 - pantalla principal de la app,
 - lista con tareas guardadas,
@@ -306,7 +188,7 @@ const URLS_TO_CACHE = [
 
 ---
 
-## 11. Preguntas para responder
+## 10. Preguntas para responder
 
 1. ¿Qué hace el `manifest.json`?
 2. ¿Qué función cumple el Service Worker?
@@ -318,7 +200,7 @@ const URLS_TO_CACHE = [
 
 ---
 
-## 12. Observaciones importantes
+## 11. Observaciones importantes
 
 - La app está pensada para ser simple y fácil de entender.
 - El código usa una prueba real de conectividad para evitar que el estado “conectado” se vea mal al volver de modo offline.
@@ -326,14 +208,12 @@ const URLS_TO_CACHE = [
 
 ---
 
-## 13. Entrega sugerida
+## 12. Entrega sugerida
 
 Cada grupo puede entregar:
 
-- enlace al fork o repositorio,
-- capturas de pantalla,
-- respuestas a las preguntas,
-- breve explicación de cómo funciona la PWA.
+- capturas de pantalla
+- respuestas a las preguntas
 
 ---
 
