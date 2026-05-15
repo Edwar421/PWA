@@ -1,25 +1,36 @@
 # Taller práctico: Progressive Web App (PWA) básica
 
-Este taller está diseñado para que se desarrolle en aproximadamente **30 minutos**.  
-La idea es que cada compañero pueda hacer **fork** o copiar este repositorio, ejecutar la aplicación y comprobar por sí mismo cómo funciona una **Progressive Web App**.
+Este repositorio contiene una PWA pequeña, bonita y fácil de entender para que el grupo pueda practicar en aproximadamente **30 minutos**.
 
-## Objetivo del taller
-
-Construir una PWA mínima que permita:
-
-- ver una interfaz web funcional,
-- agregar tareas sencillas,
-- registrar un **Service Worker**,
-- activar el uso de **caché**,
-- funcionar en **modo offline** después de la primera carga,
-- identificar el archivo `manifest.json`,
-- entender de forma práctica qué hace cada componente de una PWA.
+La idea es que cada estudiante haga **fork** o descargue el proyecto, lo ejecute, active el modo offline y responda preguntas sobre cómo funciona una PWA.
 
 ---
 
-## Qué incluye este proyecto
+## 1. Objetivo del taller
 
-La estructura del proyecto es la siguiente:
+Al finalizar, la app debe permitir:
+
+- abrir la interfaz correctamente,
+- agregar tareas,
+- seleccionar una prioridad,
+- guardar la información en el navegador,
+- registrar un Service Worker,
+- funcionar sin internet después de haber cargado una vez,
+- identificar el archivo `manifest.json`,
+- entender cómo se relacionan `index.html`, `app.js`, `sw.js` y `styles.css`.
+
+---
+
+## 2. Duración sugerida
+
+- **5 min**: explicación rápida de la estructura.
+- **10 min**: revisión y ejecución del código.
+- **10 min**: pruebas de offline y capturas.
+- **5 min**: preguntas finales.
+
+---
+
+## 3. Estructura del proyecto
 
 ```text
 pwa-taller/
@@ -28,6 +39,7 @@ pwa-taller/
 ├── app.js
 ├── sw.js
 ├── manifest.json
+├── ping.txt
 ├── icons/
 │   ├── icon-192.png
 │   └── icon-512.png
@@ -36,102 +48,121 @@ pwa-taller/
 
 ---
 
-## Requisitos
+## 4. Requisitos
 
-Para ejecutar el taller necesitas:
+Necesitas:
 
-- Un navegador moderno, preferiblemente **Google Chrome** o **Microsoft Edge**.
-- Un editor de código, por ejemplo **Visual Studio Code**.
-- Una forma de servir el proyecto localmente:
-  - Live Server en VS Code, o
-  - un servidor simple de Python.
+- **Google Chrome** o **Microsoft Edge**.
+- **Visual Studio Code** o cualquier editor.
+- Un servidor local:
+  - Live Server, o
+  - Python.
 
-> Importante: las PWA necesitan un entorno seguro para funcionar correctamente.  
-> Para pruebas locales, `localhost` es válido.
-
----
-
-## Paso 1: Descargar o hacer fork del repositorio
-
-Cada estudiante debe:
-
-1. Clonar el repositorio o hacer fork.
-2. Abrir la carpeta del proyecto en su editor de código.
-3. Verificar que existan todos los archivos listados arriba.
+> Importante: una PWA necesita un origen seguro.  
+> Para pruebas locales, `localhost` funciona correctamente.
 
 ---
 
-## Paso 2: Ejecutar el proyecto
+## 5. Paso a paso para ejecutar el taller
 
-### Opción A: Live Server
-1. Abrir el proyecto en VS Code.
-2. Instalar la extensión **Live Server** si no está instalada.
-3. Hacer clic derecho sobre `index.html`.
-4. Seleccionar **Open with Live Server**.
+### Paso 1: Hacer fork o descargar
+1. Abrir el repositorio.
+2. Hacer fork o descargar el proyecto.
+3. Abrir la carpeta en el editor de código.
+4. Verificar que estén todos los archivos.
 
-### Opción B: Servidor local con Python
-En la terminal, ubicarse dentro de la carpeta del proyecto y ejecutar:
+### Paso 2: Abrir el proyecto
+Usa una de estas opciones:
 
+**Opción A: Live Server**
+1. Abrir `index.html`.
+2. Hacer clic derecho.
+3. Elegir **Open with Live Server**.
+
+**Opción B: Python**
 ```bash
 python -m http.server 5500
 ```
 
-Luego abrir en el navegador:
-
+Luego abre:
 ```text
 http://localhost:5500
 ```
 
 ---
 
-## Paso 3: Entender la estructura del proyecto
+## 6. Qué hace cada archivo
 
-### 1. `index.html`
-Es la estructura principal de la aplicación.  
-Contiene:
+### `index.html`
+Contiene la estructura visual de la app:
+- título,
+- estado de conexión,
+- formulario,
+- lista de tareas.
 
-- el título de la app,
-- el formulario para agregar tareas,
-- el espacio donde se listan las tareas,
-- el enlace al `manifest.json`,
-- el enlace a `styles.css`,
-- y la carga de `app.js`.
-
-### 2. `styles.css`
-Define la apariencia visual de la aplicación:
+### `styles.css`
+Define el estilo:
 - fondo,
 - tarjetas,
 - botones,
-- entradas de texto,
-- listas.
+- diseño responsivo,
+- colores,
+- tarjetas de tareas.
 
-### 3. `app.js`
-Contiene la lógica principal:
-- registrar el Service Worker,
-- mostrar el estado de conexión,
-- agregar tareas a la lista,
-- guardar tareas en `localStorage`.
+### `app.js`
+Tiene la lógica principal:
+- guardar tareas en `localStorage`,
+- mostrar la lista,
+- eliminar tareas,
+- verificar la conexión real,
+- registrar el Service Worker.
 
-### 4. `manifest.json`
-Le dice al navegador cómo debe comportarse la app cuando se instala:
-- nombre,
-- color del tema,
-- pantalla de inicio,
-- iconos.
-
-### 5. `sw.js`
+### `sw.js`
 Es el Service Worker:
-- guarda archivos en caché,
-- intercepta peticiones,
-- permite cargar la app sin internet una vez ya fue visitada.
+- guarda recursos en caché,
+- permite cargar la app offline,
+- evita que la página dependa totalmente de internet.
+
+### `manifest.json`
+Le dice al navegador cómo instalar la PWA:
+- nombre,
+- ícono,
+- colores,
+- modo de visualización.
+
+### `ping.txt`
+Archivo mínimo usado para comprobar conexión real.
 
 ---
 
-## Paso 4: Revisar el código de cada archivo
+## 7. Qué mirar en el código
+
+### 7.1 Campo principal
+El usuario escribe una tarea.
+
+### 7.2 Campo adicional
+El usuario selecciona una prioridad:
+- Alta
+- Media
+- Baja
+
+### 7.3 Botones
+- **Agregar tarea**
+- **Limpiar lista**
+
+### 7.4 Estado de conexión
+La aplicación muestra:
+- conectado,
+- sin conexión,
+- comprobando conexión.
+
+La verificación no depende solo de `navigator.onLine`, sino de una prueba real con `ping.txt`.
+
+---
+
+## 8. Archivos listos para revisar
 
 ### `index.html`
-Este archivo crea la interfaz visible.
-
 ```html
 <!DOCTYPE html>
 <html lang="es">
@@ -139,24 +170,73 @@ Este archivo crea la interfaz visible.
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#2563eb" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
   <link rel="stylesheet" href="styles.css" />
-  <title>Mi PWA</title>
+  <title>Mi PWA Taller</title>
 </head>
 <body>
-  <main class="container">
-    <h1>Mi PWA</h1>
-    <p id="estado">Estado: comprobando conexión...</p>
+  <main class="shell">
+    <section class="hero card">
+      <div>
+        <span class="tag">Taller práctico PWA</span>
+        <h1>Mi PWA Taller</h1>
+        <p class="lead">
+          Una aplicación pequeña para entender <strong>manifest</strong>, <strong>Service Worker</strong>,
+          <strong>caché</strong>, <strong>instalación</strong> y <strong>modo offline</strong>.
+        </p>
+      </div>
 
-    <section class="card">
-      <label for="tarea">Nueva tarea</label>
-      <input type="text" id="tarea" placeholder="Escribe una tarea" />
-      <button id="agregar">Agregar tarea</button>
+      <div class="status-panel">
+        <p class="status-label">Conexión</p>
+        <p id="estado" class="status state-waiting">Comprobando conexión...</p>
+        <p id="estado-detalle" class="status-detail">La app verificará si hay internet real y no solo el estado del navegador.</p>
+      </div>
+    </section>
+
+    <section class="card form-card">
+      <div class="card-title">
+        <h2>Agregar una tarea</h2>
+        <p>Completa los campos y presiona “Agregar tarea”.</p>
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label for="tarea">Tarea</label>
+          <input type="text" id="tarea" placeholder="Ej. Revisar el Service Worker" maxlength="80" />
+        </div>
+
+        <div class="field">
+          <label for="prioridad">Prioridad</label>
+          <select id="prioridad">
+            <option value="Alta">Alta</option>
+            <option value="Media" selected>Media</option>
+            <option value="Baja">Baja</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="agregar" class="primary">Agregar tarea</button>
+        <button id="limpiar" class="secondary" type="button">Limpiar lista</button>
+      </div>
     </section>
 
     <section class="card">
-      <h2>Lista de tareas</h2>
-      <ul id="lista"></ul>
+      <div class="list-header">
+        <div>
+          <h2>Lista de tareas</h2>
+          <p>Tus datos se guardan en el navegador con <code>localStorage</code>.</p>
+        </div>
+        <span id="contador" class="counter">0 tareas</span>
+      </div>
+
+      <ul id="lista" class="task-list"></ul>
+      <p class="hint">
+        Prueba esto: agrega una tarea, abre DevTools, activa <strong>Offline</strong> y recarga. La app debe seguir visible y mostrar el estado correcto.
+      </p>
     </section>
   </main>
 
@@ -165,306 +245,105 @@ Este archivo crea la interfaz visible.
 </html>
 ```
 
----
-
-### `styles.css`
-Este archivo define el diseño visual.
-
-```css
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f3f6fb;
-  color: #111827;
-}
-
-.container {
-  max-width: 720px;
-  margin: 40px auto;
-  padding: 24px;
-}
-
-h1 {
-  margin-top: 0;
-  color: #1d4ed8;
-}
-
-.card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 20px;
-  margin-top: 16px;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  font-size: 16px;
-}
-
-button {
-  width: 100%;
-  padding: 12px 14px;
-  border: none;
-  border-radius: 10px;
-  background: #2563eb;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #1d4ed8;
-}
-
-ul {
-  margin: 0;
-  padding-left: 20px;
-}
-
-li {
-  margin: 8px 0;
-}
-```
-
----
-
 ### `app.js`
-Este archivo agrega la lógica de la aplicación.
-
 ```javascript
 const inputTarea = document.getElementById('tarea');
+const selectPrioridad = document.getElementById('prioridad');
 const botonAgregar = document.getElementById('agregar');
+const botonLimpiar = document.getElementById('limpiar');
 const listaTareas = document.getElementById('lista');
 const estado = document.getElementById('estado');
+const estadoDetalle = document.getElementById('estado-detalle');
+const contador = document.getElementById('contador');
 
-const STORAGE_KEY = 'pwa-taller-tareas';
+const STORAGE_KEY = 'pwa-taller-tareas-v2';
+const PING_URL = './ping.txt';
 
-function actualizarEstadoConexion() {
-  if (navigator.onLine) {
-    estado.textContent = 'Estado: conectado a Internet';
-    estado.style.color = 'green';
-  } else {
-    estado.textContent = 'Estado: sin conexión (modo offline)';
-    estado.style.color = 'red';
-  }
-}
-
-function cargarTareas() {
-  const tareas = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  listaTareas.innerHTML = '';
-
-  tareas.forEach((tarea) => {
-    const li = document.createElement('li');
-    li.textContent = tarea;
-    listaTareas.appendChild(li);
-  });
-}
-
-function guardarTarea(nuevaTarea) {
-  const tareas = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  tareas.push(nuevaTarea);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(tareas));
-}
-
-botonAgregar.addEventListener('click', () => {
-  const tarea = inputTarea.value.trim();
-
-  if (!tarea) {
-    alert('Escribe una tarea antes de agregarla.');
-    return;
-  }
-
-  guardarTarea(tarea);
-  cargarTareas();
-  inputTarea.value = '';
-  inputTarea.focus();
-});
-
-window.addEventListener('online', actualizarEstadoConexion);
-window.addEventListener('offline', actualizarEstadoConexion);
-
-actualizarEstadoConexion();
-cargarTareas();
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('sw.js')
-      .then((registro) => {
-        console.log('Service Worker registrado correctamente:', registro.scope);
-      })
-      .catch((error) => {
-        console.error('Error al registrar el Service Worker:', error);
-      });
-  });
-}
+// ... resto del código ...
 ```
-
----
-
-### `manifest.json`
-Este archivo le permite al navegador reconocer la app como instalable.
-
-```json
-{
-  "name": "Mi PWA Taller",
-  "short_name": "PWA Taller",
-  "start_url": ".",
-  "scope": ".",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2563eb",
-  "description": "Aplicación básica para aprender Progressive Web Apps",
-  "lang": "es",
-  "icons": [
-    {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
-}
-```
-
----
 
 ### `sw.js`
-Este archivo guarda recursos en caché y permite el modo offline.
-
 ```javascript
-const CACHE_NAME = 'pwa-taller-v1';
+const CACHE_NAME = 'pwa-taller-v2';
 const URLS_TO_CACHE = [
   './',
   './index.html',
   './styles.css',
   './app.js',
-  './manifest.json'
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
-
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(URLS_TO_CACHE);
-    })
-  );
-});
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-        })
-      );
-    })
-  );
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
-    })
-  );
-});
 ```
 
 ---
 
-## Paso 5: Probar el funcionamiento
+## 9. Cómo probar que funciona offline
 
-Una vez abierto el proyecto en el navegador:
+1. Abrir la app.
+2. Agregar 2 o 3 tareas.
+3. Esperar a que se registre el Service Worker.
+4. Abrir DevTools.
+5. Ir a la pestaña **Network**.
+6. Marcar **Offline**.
+7. Recargar la página.
 
-1. Escribe una tarea.
-2. Pulsa **Agregar tarea**.
-3. Recarga la página.
-4. Verifica que la tarea siga apareciendo.
-5. Abre DevTools → pestaña **Application**.
-6. Revisa:
-   - **Manifest**
-   - **Service Workers**
-   - **Cache Storage**
-7. Activa el modo **Offline**.
-8. Recarga la página y comprueba que sigue funcionando.
-
----
-
-## Paso 6: Qué pantallazos tomar
-
-Cada estudiante debe guardar evidencia de:
-
-- la página principal funcionando,
-- una tarea agregada,
-- el manifiesto cargado en DevTools,
-- el Service Worker activo,
-- la caché creada,
-- la app funcionando en modo offline.
+### Resultado esperado
+- La app debe seguir cargando.
+- La lista debe mantenerse.
+- El estado debe cambiar a **Sin conexión**.
 
 ---
 
-## Paso 7: Preguntas del taller
+## 10. Qué deben capturar en pantallazos
 
-Responder en el informe o en clase:
+- pantalla principal de la app,
+- lista con tareas guardadas,
+- Service Worker activo,
+- modo offline activado,
+- recarga de la app sin internet,
+- sección `Application` o `Service Workers` en DevTools.
 
-1. ¿Qué hace el archivo `manifest.json`?
+---
+
+## 11. Preguntas para responder
+
+1. ¿Qué hace el `manifest.json`?
 2. ¿Qué función cumple el Service Worker?
-3. ¿Por qué la app sigue funcionando sin internet?
-4. ¿Qué archivos quedan guardados en caché?
-5. ¿Qué diferencia hay entre una web normal y una PWA?
-6. ¿Qué ventaja tiene instalarla en el dispositivo?
-7. ¿Qué archivo define la experiencia de instalación?
-8. ¿Qué archivo controla el modo offline?
+3. ¿Por qué la app puede seguir funcionando sin internet?
+4. ¿Para qué sirve la caché?
+5. ¿Qué cambia al agregar el campo de prioridad?
+6. ¿Por qué `navigator.onLine` no siempre es suficiente?
+7. ¿Qué diferencia hay entre una web normal y una PWA?
 
 ---
 
-## Paso 8: Entrega final
+## 12. Observaciones importantes
 
-Cada grupo debe entregar:
+- La app está pensada para ser simple y fácil de entender.
+- El código usa una prueba real de conectividad para evitar que el estado “conectado” se vea mal al volver de modo offline.
+- El diseño es responsivo y funciona en móvil y escritorio.
 
-- el enlace al repositorio de GitHub,
-- capturas de pantalla del funcionamiento,
+---
+
+## 13. Entrega sugerida
+
+Cada grupo puede entregar:
+
+- enlace al fork o repositorio,
+- capturas de pantalla,
 - respuestas a las preguntas,
-- explicación corta de cada archivo.
+- breve explicación de cómo funciona la PWA.
 
 ---
 
-## Criterio de evaluación sugerido
+## 14. Resumen final
 
-| Aspecto | Valor |
-|---|---|
-| Estructura del proyecto | 20% |
-| Funcionamiento de la app | 20% |
-| Registro del Service Worker | 20% |
-| Modo offline | 20% |
-| Respuestas y explicación | 20% |
+Una PWA combina:
+- **HTML** para estructura,
+- **CSS** para diseño,
+- **JavaScript** para lógica,
+- **manifest.json** para instalación,
+- **Service Worker** para caché y offline.
 
----
-
-## Nota final
-
-Este taller está pensado para aprender lo esencial de una PWA de manera clara, corta y práctica.  
-No busca hacer una app compleja, sino entender los componentes principales que hacen que una aplicación web pueda comportarse como una app instalable y offline.
-
+Eso es lo esencial que este taller quiere mostrar.

@@ -4,24 +4,73 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#2563eb" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
   <link rel="stylesheet" href="styles.css" />
-  <title>Mi PWA</title>
+  <title>Mi PWA Taller</title>
 </head>
 <body>
-  <main class="container">
-    <h1>Mi PWA</h1>
-    <p id="estado">Estado: comprobando conexión...</p>
+  <main class="shell">
+    <section class="hero card">
+      <div>
+        <span class="tag">Taller práctico PWA</span>
+        <h1>Mi PWA Taller</h1>
+        <p class="lead">
+          Una aplicación pequeña para entender <strong>manifest</strong>, <strong>Service Worker</strong>,
+          <strong>caché</strong>, <strong>instalación</strong> y <strong>modo offline</strong>.
+        </p>
+      </div>
 
-    <section class="card">
-      <label for="tarea">Nueva tarea</label>
-      <input type="text" id="tarea" placeholder="Escribe una tarea" />
-      <button id="agregar">Agregar tarea</button>
+      <div class="status-panel">
+        <p class="status-label">Conexión</p>
+        <p id="estado" class="status state-waiting">Comprobando conexión...</p>
+        <p id="estado-detalle" class="status-detail">La app verificará si hay internet real y no solo el estado del navegador.</p>
+      </div>
+    </section>
+
+    <section class="card form-card">
+      <div class="card-title">
+        <h2>Agregar una tarea</h2>
+        <p>Completa los campos y presiona “Agregar tarea”.</p>
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label for="tarea">Tarea</label>
+          <input type="text" id="tarea" placeholder="Ej. Revisar el Service Worker" maxlength="80" />
+        </div>
+
+        <div class="field">
+          <label for="prioridad">Prioridad</label>
+          <select id="prioridad">
+            <option value="Alta">Alta</option>
+            <option value="Media" selected>Media</option>
+            <option value="Baja">Baja</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="agregar" class="primary">Agregar tarea</button>
+        <button id="limpiar" class="secondary" type="button">Limpiar lista</button>
+      </div>
     </section>
 
     <section class="card">
-      <h2>Lista de tareas</h2>
-      <ul id="lista"></ul>
+      <div class="list-header">
+        <div>
+          <h2>Lista de tareas</h2>
+          <p>Tus datos se guardan en el navegador con <code>localStorage</code>.</p>
+        </div>
+        <span id="contador" class="counter">0 tareas</span>
+      </div>
+
+      <ul id="lista" class="task-list"></ul>
+      <p class="hint">
+        Prueba esto: agrega una tarea, abre DevTools, activa <strong>Offline</strong> y recarga. La app debe seguir visible y mostrar el estado correcto.
+      </p>
     </section>
   </main>
 
