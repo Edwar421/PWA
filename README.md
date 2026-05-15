@@ -210,7 +210,7 @@ La verificación no depende solo de `navigator.onLine`, sino de una prueba real 
 
 ## 12. Entrega sugerida
 
-Cada grupo puede entregar:
+Cada integrante debe entregar:
 
 - capturas de pantalla
 - respuestas a las preguntas
